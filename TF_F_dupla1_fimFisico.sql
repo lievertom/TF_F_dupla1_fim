@@ -1,22 +1,23 @@
--- --------     << tf_f1 >>     ------------
+-- --------     << tf_f_dupla1_fim >>     ------------
 -- 
 --                    SCRIPT DE CRIACAO (DDL)
 -- 
--- Data Criacao ...........: 20/11/2019
+-- Data Criacao ...........: 01/12/2019
 -- Autor(es) ..............: Lieverton, Welison
 -- Banco de Dados .........: MySQL
--- Banco de Dados(nome) ...: tf_f1
+-- Base de Dados(nome) ...: tf_f_dupla1_fim
 --
 --
 -- PROJETO => 01 Base de Dados
 --         => 05 Tabelas
 --         => 02 Usuarios
+--         => 01 View
 --
 -- -----------------------------------------------------------------
 
-CREATE DATABASE IF NOT EXISTS tf_f1;
+CREATE DATABASE IF NOT EXISTS tf_f_dupla1_fim;
 
-USE tf_f1;
+USE tf_f_dupla1_fim;
 
 CREATE TABLE MOVIE (
     idMovie INT NOT NULL,
