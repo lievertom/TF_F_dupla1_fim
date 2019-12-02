@@ -7,10 +7,10 @@
 -- Banco de Dados .........: MySQL
 -- Banco de Dados(nome) ...: tf_f_dupla1_fim
 -- 
--- PROJETO => 1 Base de Dados
---         => 3 Tabelas
---         => 2 usuários
---         => 1 View
+-- PROJETO => 01 Base de Dados
+--         => 03 Tabelas
+--         => 02 usuários
+--         => 01 View
 -- 
 -- -----------------------------------------------------------------
 
