@@ -22,7 +22,7 @@ USE tf_f_dupla1_fim;
 -- 100 vezes.
 
 CREATE OR REPLACE VIEW v_MOVIE_RATING AS
-SELECT title, sumRating/`number of ratings` AS rating, `number of ratings`
+SELECT M.idMovie, title, sumRating/`number of ratings` AS rating, `number of ratings`
     FROM MOVIE AS M
         INNER JOIN 
         (
@@ -31,20 +31,39 @@ SELECT title, sumRating/`number of ratings` AS rating, `number of ratings`
                 GROUP BY idMovie
         ) AS R
             ON M.idMovie = R.idMovie
-    WHERE `number of ratings` >= 100
     ORDER BY rating DESC, `number of ratings` DESC;
 
-SELECT * FROM v_MOVIE_RATING LIMIT 10;
+SELECT title, rating, `number of ratings` 
+    FROM v_MOVIE_RATING
+    WHERE `number of ratings` >= 100 
+    LIMIT 10;
 
 -- ------------------------------------------------------------------------------------------------
 
 -- Propósito:
--- Tem como objetivo aforecer ao o usuário o nome dos 20 filmes mais populares,
+-- Tem como objetivo oforecer ao o usuário o nome dos 20 filmes mais populares,
 -- além das respectivas avaliações
+
+
+CREATE INDEX popularity_idx ON MOVIE (popularity);
 
 SELECT M.title, popularity, rating
     FROM MOVIE AS M
         INNER JOIN v_MOVIE_RATING AS V
-            ON M.title = V.title
+            ON M.idMovie = V.idMovie
     ORDER BY popularity DESC, rating DESC
     LIMIT 20;
+
+-- ------------------------------------------------------------------------------------------------
+
+-- Propósito:
+-- Tem como objetivo ofercer ao o usuário o nome dos 10 filmes melhores avaliados
+-- com a participação de um determinado ator
+
+SELECT title, rating
+    FROM CREDIT AS C
+        LEFT JOIN v_MOVIE_RATING AS V
+            ON C.idMovie = V.idMovie
+    WHERE JSON_SEARCH(cast, 'one', "Tom Hanks") IS NOT NULL
+    ORDER BY rating DESC
+    LIMIT 10;
